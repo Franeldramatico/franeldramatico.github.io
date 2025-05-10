@@ -1,0 +1,363 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffebef;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: hidden;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    perspective: 1000px;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    z-index: 5;
+}
+
+.envelope-container {
+    position: relative;
+    width: 300px;
+    height: 200px;
+    perspective: 1000px;
+}
+
+.envelope {
+    width: 100%;
+    height: 100%;
+    background-color: #ff9ebb;
+    position: relative;
+    cursor: pointer;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    transition: all 0.8s ease;
+    transform-style: preserve-3d;
+    z-index: 10;
+    opacity: 1;
+    visibility: visible;
+}
+
+.envelope:hover {
+    transform: translateY(-10px);
+}
+
+.envelope.open {
+    opacity: 0;
+    transform: scale(0.5);
+    pointer-events: none;
+    visibility: hidden;
+}
+
+.envelope-front {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #ff9ebb;
+    border-radius: 5px;
+    z-index: 3;
+}
+
+.envelope-flap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #ff7ea6;
+    clip-path: polygon(0 0, 50% 50%, 100% 0, 100% 100%, 0 100%);
+    transform-origin: top;
+    transition: all 0.6s ease;
+    z-index: 4;
+}
+
+.envelope.open .envelope-flap {
+    transform: rotateX(180deg) scale(0.5);
+    opacity: 0;
+    visibility: hidden;
+}
+
+.heart {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -60%);
+    width: 40px;
+    height: 40px;
+    background-color: #ffffff;
+    z-index: 5;
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+.heart:before, .heart:after {
+    content: "";
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background-color: #ffffff;
+    border-radius: 50%;
+}
+
+.heart:before {
+    left: -20px;
+}
+
+.heart:after {
+    top: -20px;
+}
+
+@keyframes pulse {
+    0% { transform: translate(-50%, -60%) scale(1); }
+    50% { transform: translate(-50%, -60%) scale(1.1); }
+    100% { transform: translate(-50%, -60%) scale(1); }
+}
+
+.letter {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 320px;
+    height: auto;
+    min-height: 420px;
+    background-color: #fff;
+    padding: 40px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    transform: translate(-50%, -50%) scale(0.5);
+    opacity: 0;
+    transition: all 0.8s ease;
+    border-radius: 8px;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.letter.show {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.letter-content {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #333;
+    text-align: left;
+    width: 100%;
+    word-wrap: break-word;
+}
+
+.letter-content h2 {
+    color: #ff4081;
+    margin-bottom: 20px;
+    font-weight: normal;
+    font-size: 22px;
+    width: 100%;
+}
+
+.signature {
+    text-align: right;
+    margin-top: 30px;
+    font-style: italic;
+    color: #ff4081;
+    width: 100%;
+    padding-bottom: 10px;
+    position: relative;
+    bottom: 0;
+}
+
+.flowers {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.flower {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-color: #ffb6c1;
+    border-radius: 50%;
+    opacity: 0.7;
+}
+
+.flower:before, .flower:after {
+    content: "";
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-color: #ffb6c1;
+    border-radius: 50%;
+}
+
+.flower:before {
+    left: -12px;
+    top: -12px;
+}
+
+.flower:after {
+    right: -12px;
+    top: -12px;
+}
+
+.decoration {
+    position: absolute;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.deco1 {
+    top: 10%;
+    left: 5%;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #ff9ebb 0%, transparent 70%);
+    opacity: 0.7;
+}
+
+.deco2 {
+    bottom: 15%;
+    right: 8%;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #ff9ebb 0%, transparent 70%);
+    opacity: 0.7;
+}
+
+.deco3 {
+    top: 40%;
+    right: 15%;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #ff9ebb 0%, transparent 70%);
+    opacity: 0.7;
+}
+
+.deco4 {
+    bottom: 30%;
+    left: 12%;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #ff9ebb 0%, transparent 70%);
+    opacity: 0.7;
+}
+
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    opacity: 0;
+    transform: translateY(0);
+}
+
+/* Mejoras específicas para dispositivos móviles */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+    
+    .envelope {
+        width: 280px;
+        height: 180px;
+    }
+    
+    .letter {
+        width: 300px;
+        height: auto;
+        min-height: 400px;
+        padding: 30px;
+    }
+    
+    .letter.show {
+        transform: translate(-50%, -50%) scale(1);
+    }
+    
+    .letter-content {
+        font-size: 15px;
+    }
+    
+    .letter-content h2 {
+        font-size: 20px;
+    }
+}
+
+/* Optimizaciones específicas para teléfonos más pequeños, incluidos HONOR */
+@media (max-width: 360px) {
+    .envelope {
+        width: 240px;
+        height: 160px;
+    }
+    
+    .letter {
+        width: 260px;
+        padding: 20px;
+        min-height: 380px;
+    }
+    
+    .letter.show {
+        transform: translate(-50%, -50%) scale(1);
+    }
+    
+    .letter-content {
+        font-size: 14px;
+    }
+    
+    .letter-content h2 {
+        font-size: 18px;
+    }
+    
+    .heart {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .heart:before, .heart:after {
+        width: 30px;
+        height: 30px;
+    }
+}
+
+/* Corrección de altura en pantallas pequeñas cuando el teclado virtual está activo */
+@media (max-height: 500px) {
+    body {
+        height: auto;
+        min-height: 100vh;
+    }
+    
+    .letter.show {
+        transform: translate(-50%, -50%) scale(0.9);
+    }
+}
+
+/* Optimización para pantallas de alta densidad de píxeles (común en dispositivos HONOR) */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .letter {
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+    }
+    
+    .envelope {
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    }
+}
+
+.envelope-front, .envelope-flap, .heart {
+    transition: all 0.8s ease;
+}
+
+.envelope.open .envelope-front,
+.envelope.open .envelope-flap,
+.envelope.open .heart {
+    opacity: 0;
+    visibility: hidden;
+}
